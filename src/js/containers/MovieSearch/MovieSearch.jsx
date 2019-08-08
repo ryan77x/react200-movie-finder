@@ -39,12 +39,14 @@ export default class MovieSearch extends React.Component {
   }
   
   render() {
-    const { userInput } = this.props;
+    const { userInput, movieData } = this.props;
 
     return (
       <div className='container'>
-        <div className='jumbotron' >
-          <h1 className='display-3 text-left'>RL Movie Finder App</h1>
+        <div>
+          <br/>
+          <h1 className='text-center'>Movie Finder</h1>
+          <br/>
         </div>
 
         <div className="input-group mb-3">

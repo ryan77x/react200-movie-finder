@@ -8,14 +8,22 @@ export function updateSearchInput(input) {
 }
   
 export function search(input) {
-  let url = '/api/weather_data/?q=' + input;
+  let url = '/api/movie_data/?s=' + input;
   let notFound = null;
   
   return {
     type: 'GET_MOVIE',
     payload: axios.get(url).then(res=>{
-        notFound = false;
-        return {data: res.data, input, notFound};
+        let data = res.data;
+
+        if (data.Response === 'False'){
+          notFound = true;
+          return {data: {}, input, notFound};
+        }
+        else{
+          notFound = false;
+          return {data: data, input, notFound};
+        }
       }).catch(error => {
         console.log(error);  
         notFound = true;
