@@ -37,7 +37,7 @@ export default class MovieSearch extends React.Component {
       }
     }
   }
-  
+
   render() {
     const { userInput, movieData, notFound } = this.props;
 
@@ -53,6 +53,7 @@ export default class MovieSearch extends React.Component {
       display =
         movieData.Search.map(movie => {
           let temp = null;
+          let src = '/#/movie/' + movie.imdbID;
 
           if (movie.Poster === 'N/A'){ temp = <div>Movie poster is not available</div>; } 
           else if (!movie.Poster.includes('https')){ temp = <img src={movie.Poster.replace('http', 'https')} alt={movie.Title}/>; }
@@ -65,10 +66,19 @@ export default class MovieSearch extends React.Component {
                           { temp }
                         </div>
                         <div className='col-md-8 mb-4'>
-                          <div>{movie.Title}</div>
-                          <div>{movie.Year}</div>
-                          <hr/>
-                          <div>{movie.Plot}</div>
+                          <div className='row'>
+                            <div className='col-md-12 mb-4'>
+                              <div><strong>{movie.Title}</strong></div>
+                              <div>{movie.Year}</div>
+                              <hr/>
+                              <div>{movie.Plot}</div>
+                            </div>
+                          </div>
+                          <div className='row'>
+                            <div className='col-md-12 mb-4'>
+                              <a href={src} className="btn btn-primary float-right" role="button" name="moreInfoButton">More Information</a>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

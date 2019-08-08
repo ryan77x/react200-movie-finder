@@ -3,8 +3,8 @@ import MovieDetail from './MovieDetail';
 
 function mapStoreToProps(store) {
   return {
-    // cityNameInput: store.search.cityNameInput,
-    // weatherData: store.search.weatherData
+    movieData: store.movieSearch.movieData,
+    notFound: store.movieSearch.notFound
   };
 }
 
