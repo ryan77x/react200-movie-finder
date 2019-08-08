@@ -8,7 +8,7 @@ export function updateSearchInput(input) {
 }
   
 export function search(input) {
-  let url = '/api/movie_data/?s=' + input;
+  let url = '/api/movies_data/?s=' + input;
   let notFound = null;
   
   return {

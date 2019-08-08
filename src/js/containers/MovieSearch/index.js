@@ -4,7 +4,8 @@ import MovieSearch from './MovieSearch';
 function mapStoreToProps(store) {
   return {
     userInput: store.movieSearch.userInput,
-    movieData: store.movieSearch.movieData
+    movieData: store.movieSearch.movieData,
+    notFound: store.movieSearch.notFound
   };
 }
 
