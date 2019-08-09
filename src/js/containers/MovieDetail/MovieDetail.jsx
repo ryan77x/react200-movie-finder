@@ -44,9 +44,21 @@ class MovieDetail extends React.Component {
                         <div className='card card-border-color mb-3'>
                           <div className='card-header card-header-color card-text'>Movie Details</div>
                           <div className="card-body">
-                            <div>{movie.Title}</div>
-                            <div>{movie.Year}</div>
-                            <div>{movie.Plot}</div>
+                            <p><strong>{movie.Title}</strong></p>
+                            <div className='row'>
+                              <div className='col-md-4 mb-4 text-center movie-detail-text-color'>
+                                <p id="round-corners">Released { movie.Year } </p>
+                              </div>
+                              <div className='col-md-2 mb-4 text-center movie-detail-text-color'>
+                               <p id="round-corners">{ movie.Runtime } </p>
+                              </div>
+                              <div className='col-md-6 mb-4 text-center movie-detail-text-color'>
+                               <p id="round-corners">{ movie.Genre } </p>
+                              </div>
+                            </div>
+                            <p>{movie.Plot}</p>
+                            <p>{movie.Awards}</p>
+                            <p><strong>Metascore: </strong>{movie.Metascore}<br/><strong>IMDB: </strong>{movie.imdbRating}</p>
                           </div>
                         </div>
                       </div>
@@ -62,7 +74,7 @@ class MovieDetail extends React.Component {
         </div>
    
         <div className="input-group-append">
-          <a href="/#" className="btn btn-link float-right" role="button" name="moreInfoButton">Go Back</a> 
+          <p><a href="/#" className="btn btn-link float-right" role="button" name="moreInfoButton">Go Back</a></p> 
         </div>
 
         <div className='row'>

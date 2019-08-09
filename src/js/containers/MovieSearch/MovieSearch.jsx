@@ -76,7 +76,7 @@ export default class MovieSearch extends React.Component {
                           </div>
                           <div className='row'>
                             <div className='col-md-12 mb-4'>
-                              <a href={src} className="btn btn-primary float-right" role="button" name="moreInfoButton">More Information</a>
+                              <a href={src} className="btn more-info-btn-color float-right" role="button" name="moreInfoButton">More Information</a>
                             </div>
                           </div>
                         </div>
