@@ -1,14 +1,25 @@
 import React from 'react';
 
+import {
+  getMovieDetail
+} from './movieDetailActions';
+
 class MovieDetail extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount(){
+    const { match, dispatch } = this.props;
+    let movieID = match.params.id;
+
+    if (movieID.trim() !== ''){
+      dispatch(getMovieDetail(movieID));
+    }  
+  }
+
   render() {
     const { movieData, notFound } = this.props;
-    const movies = movieData.Search;
-    let index = movies.findIndex(movie => movie.imdbID === this.props.match.params.id);
     let display = null;
 
     if (notFound === null){
@@ -18,7 +29,7 @@ class MovieDetail extends React.Component {
       display = <div>No movie detail found.</div>
     }
     else {
-          let movie = movies[index];
+          let movie = movieData;
           let temp = null;
 
           if (movie.Poster === 'N/A'){ temp = <div>Movie poster is not available</div>; } 
@@ -49,13 +60,10 @@ class MovieDetail extends React.Component {
           <h1 className='text-center'>Movie Finder</h1>
           <br/>
         </div>
-
-
    
         <div className="input-group-append">
           <a href="/#" className="btn btn-link float-right" role="button" name="moreInfoButton">Go Back</a> 
         </div>
-
 
         <div className='row'>
           <div className='col-md-12 mb-4'>

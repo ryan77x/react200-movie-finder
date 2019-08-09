@@ -16,7 +16,6 @@ export default function searchReducer(state = defaultState, action) {
     }
 
     case 'GET_MOVIE_FULFILLED': {
-
       return {
         userInput: payload.input,
         movieData: payload.data,

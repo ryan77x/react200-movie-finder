@@ -3,8 +3,9 @@ import MovieDetail from './MovieDetail';
 
 function mapStoreToProps(store) {
   return {
-    movieData: store.movieSearch.movieData,
-    notFound: store.movieSearch.notFound
+    movieID: store.movieDetail.movieID,
+    movieData: store.movieDetail.movieData,
+    notFound: store.movieDetail.notFound
   };
 }
 
