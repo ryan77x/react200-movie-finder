@@ -42,23 +42,23 @@ class MovieDetail extends React.Component {
                       </div>
                       <div className="col-md-8" >
                         <div className='card card-border-color mb-3'>
-                          <div className='card-header card-header-color card-text'>Movie Details</div>
-                          <div className="card-body">
-                            <p><strong>{movie.Title}</strong></p>
+                          <div id="movie-detail-header" className='card-header card-header-color card-text'>Movie Details</div>
+                          <div id="movie-detail-body" className="card-body">
+                            <p id="movie-title"><strong>{movie.Title}</strong></p>
                             <div className='row'>
                               <div className='col-md-4 mb-4 text-center movie-detail-text-color'>
-                                <p id="round-corners">Released { movie.Year } </p>
+                                <p id="movie-release-year" className="round-corners">Released { movie.Year } </p>
                               </div>
                               <div className='col-md-2 mb-4 text-center movie-detail-text-color'>
-                               <p id="round-corners">{ movie.Runtime } </p>
+                               <p id="movie-runtime" className="round-corners">{ movie.Runtime } </p>
                               </div>
                               <div className='col-md-6 mb-4 text-center movie-detail-text-color'>
-                               <p id="round-corners">{ movie.Genre } </p>
+                               <p id="movie-genre" className="round-corners">{ movie.Genre } </p>
                               </div>
                             </div>
-                            <p>{movie.Plot}</p>
-                            <p>{movie.Awards}</p>
-                            <p><strong>Metascore: </strong>{movie.Metascore}<br/><strong>IMDB: </strong>{movie.imdbRating}</p>
+                            <p id="movie-plot">{movie.Plot}</p>
+                            <p id="movie-award">{movie.Awards}</p>
+                            <p><strong id="movie-metascore">Metascore: </strong>{movie.Metascore}<br/><strong id="movie-imdb-rating">IMDB Rating: </strong>{movie.imdbRating}</p>
                           </div>
                         </div>
                       </div>

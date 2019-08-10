@@ -59,34 +59,36 @@ export default class MovieSearch extends React.Component {
           else if (!movie.Poster.includes('https')){ temp = <img src={movie.Poster.replace('http', 'https')} alt={movie.Title}/>; }
           else{ temp = <img src={movie.Poster} alt={movie.Title}/>; }
 
-          return <div className="card" key={ movie.id }>
-                    <div className="card-body">
-                      <div className='row'>
-                        <div className='col-md-4 mb-4'>
-                          { temp }
-                        </div>
-                        <div className='col-md-8 mb-4'>
-                          <div className='row'>
-                            <div className='col-md-12 mb-4'>
-                              <div><strong>{movie.Title}</strong></div>
-                              <div>{movie.Year}</div>
-                              <hr/>
-                              <div>{movie.Plot}</div>
-                            </div>
+          return  <div>
+                    <div className="card" key={ movie.id }>
+                      <div className="card-body">
+                        <div className='row'>
+                          <div className='col-md-4 mb-4'>
+                            { temp }
                           </div>
-                          <div className='row'>
-                            <div className='col-md-12 mb-4'>
-                              <a href={src} className="btn more-info-btn-color float-right" role="button" id="more-info-button">More Information</a>
+                          <div className='col-md-8 mb-4'>
+                            <div className='row'>
+                              <div id="movie-search-body" className='col-md-12 mb-4'>
+                                <div><strong>{movie.Title}</strong></div>
+                                <div>{movie.Year}</div>
+                                <hr/>
+                                <div>{movie.Plot}</div>
+                              </div>
+                            </div>
+                            <div className='row'>
+                              <div className='col-md-12 mb-4'>
+                                <a href={src} className="btn more-info-btn-color float-right" role="button" id="more-info-button">More Information</a>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>    
+                    </div>  
+                    <br/>
+                  </div> 
         });
     }            
     
-
     return (
       <div className='container'>
         <div>
