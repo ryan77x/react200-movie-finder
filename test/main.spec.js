@@ -16,11 +16,36 @@ app.listen(8888);
 const url = 'http://localhost:8888';
 
 
-describe('express', () => {
+describe('expressJS server', () => {
   beforeEach(() => {
     nightmare = new Nightmare();
   });
 
-  it('returns the correct status code', () => axios.get(url)
+  it('Returns the correct status code when it is running', () => axios.get(url)
     .then(response => expect(response.status === 200)));
 });
+
+describe('End to End front-end test scenarious', () => {
+  let pageObject;
+
+  beforeEach(() => {
+    pageObject = new Nightmare();
+  });
+
+  it('should show a list of movies as bootstrap cards', () =>
+    pageObject
+    .goto(url)
+    .type('#search-input', 'hello')
+    .click('#go-button')
+    .wait('div.card')
+    .evaluate(() => document.querySelectorAll('div.card').length)
+    .end()
+    .then((numberOfCards) => {
+      expect(numberOfCards).to.greaterThan(1);
+    })
+  ).timeout(20000);
+
+});
+
+
+

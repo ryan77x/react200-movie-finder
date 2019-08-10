@@ -74,7 +74,7 @@ class MovieDetail extends React.Component {
         </div>
    
         <div className="input-group-append">
-          <p><a href="/#" className="btn btn-link float-right" role="button" name="moreInfoButton">Go Back</a></p> 
+          <p><a href="/#" className="btn btn-link float-right" role="button" id="go-back">Go Back</a></p> 
         </div>
 
         <div className='row'>

@@ -76,7 +76,7 @@ export default class MovieSearch extends React.Component {
                           </div>
                           <div className='row'>
                             <div className='col-md-12 mb-4'>
-                              <a href={src} className="btn more-info-btn-color float-right" role="button" name="moreInfoButton">More Information</a>
+                              <a href={src} className="btn more-info-btn-color float-right" role="button" id="more-info-button">More Information</a>
                             </div>
                           </div>
                         </div>
@@ -99,6 +99,7 @@ export default class MovieSearch extends React.Component {
         <input 
           type="text" 
           className="form-control search-text" 
+          id="search-input"
           placeholder='Movie search examples: "star war" or "superman"'
           value={ userInput }
           onChange={ this.handleSearchInput }
@@ -106,7 +107,8 @@ export default class MovieSearch extends React.Component {
           />
         <div className="input-group-append">
           <button 
-            className="btn go-btn-border-color search-text" 
+            className="btn go-btn-border-color search-text"
+            id="go-button" 
             type="button" 
             onClick={ this.handleGoButton } >Go!
           </button>  

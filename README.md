@@ -1,5 +1,5 @@
 # Introduction
-This React/Redux app allows user to check weather of any cities around the world.
+This React/Redux app allows user to search movies for the movies' poster, plot, release year, runtime and etc..
 
 <h4>To load and run the project in the command line terminal:</h4>
 <p>
@@ -13,10 +13,8 @@ This React/Redux app allows user to check weather of any cities around the world
   </li>
   <li>
   To run the project:<br> 
-  Set an environment variable named WEATHER_API_KEY='xxxx' where xxxx is an API key you can obtain for free at https://openweathermap.org
+  Set an environment variable named MOVIE_API_KEY='xxxx' where xxxx is an API key you can obtain for free at http://omdbapi.com
   <br>Then,<br>
-  npm run build
-  <br>  
   npm start
   </li>
   <li>
