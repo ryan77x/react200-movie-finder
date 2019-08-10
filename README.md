@@ -1,5 +1,5 @@
 # Introduction
-This React/Redux app allows user to search movies for the movies' poster, plot, release year, runtime and etc..
+This React/Redux app allows user to search movies for the movies' poster, plot, release year, runtime and etc...
 
 <h4>To load and run the project in the command line terminal:</h4>
 <p>
