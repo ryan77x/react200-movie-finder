@@ -31,13 +31,17 @@ app.get('/api/movies_data', (req, res) => {
                     return axios
                     .get(tempUrl)
                     .then((tempResponse) => {
-                    return Promise.resolve({id: index, ...movie, Plot:  tempResponse.data.Plot}); 
+                        return Promise.resolve({id: index, ...movie, Plot:  tempResponse.data.Plot}); 
                     })
                     .catch(error => {
                         console.log(error);
+                        return Promise.reject(error);
                     });
                 })).then((newData) =>  {
                     res.status(200).json({Search: newData, totalResults: response.data.totalResults, Response: response.data.Response});        
+                }).catch(error => {
+                    console.log(error);
+                    res.status(404).json({"Status": "Unable to query the request all of the data at this time.  Try again later." });
                 });
             }
         })
