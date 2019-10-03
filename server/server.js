@@ -2,8 +2,14 @@ const express = require('express');
 const morgan = require('morgan');
 const axios = require('axios');
 
-const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
-const sourceUrl = "http://www.omdbapi.com";
+const ENV = process.env.ENVIRONMENT;
+let MOVIE_API_KEY = process.env.PROD_MOVIE_API_KEY;
+let sourceUrl = "http://www.omdbapi.com";
+
+if (ENV === 'dev'){
+    MOVIE_API_KEY = process.env.DEV_MOVIE_API_KEY;
+    sourceUrl = "http://localhost:3001"
+}
 
 const app = express();
 

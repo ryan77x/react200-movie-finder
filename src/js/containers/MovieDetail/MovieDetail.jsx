@@ -26,7 +26,7 @@ class MovieDetail extends React.Component {
       display = <div></div>
     }
     else if (notFound){
-      display = <div>No movie detail found.</div>
+      display = <div id="movie-detail-not-found">No movie detail found.</div>
     }
     else {
           let movie = movieData;

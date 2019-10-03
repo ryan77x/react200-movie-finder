@@ -34,10 +34,10 @@ describe('Integration Back-end API routes tests', function() {
         });
     });
 
-    it('GET /api/movie/?i=tt0093175 responds with movie data including JSON key name "Year"', done => {
+    it('GET /api/movie/?i=tt3896198 responds with movie data including JSON key name "Year"', done => {
       chai
         .request(app)
-        .get("/api/movie/?i=tt0093175")
+        .get("/api/movie/?i=tt3896198")
         .end((err, res) => {
           expect(res).to.have.status(200);
           expect(err).to.be.null;
@@ -136,6 +136,19 @@ describe('Integration Back-end API routes tests', function() {
         .get("/api/movies_data/?s=")
         .end((err, res) => {
           expect(res).to.have.status(404);
+          done();
+        });
+    });
+
+    it('GET /api/movies_data/?s=11aa22bb responds with movie data including JSON key names "Response" and "Error"', done => {
+      chai
+        .request(app)
+        .get("/api/movies_data/?s=11aa22bb")
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(err).to.be.null;
+          expect(res.body.Response).to.exist;
+          expect(res.body.Error).to.exist;
           done();
         });
     });

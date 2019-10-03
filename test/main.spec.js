@@ -74,6 +74,20 @@ describe('End to End front-end test scenarious', () => {
       expect(text).to.contain('Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the world wrestles with what kind of a hero it really needs.');
     })
     ).timeout(30000);
+
+    it('Searching movie with title "11aa22bb" should not return a result', () => 
+    pageObject
+    .goto(url)
+    .type('#search-input', '11aa22bb')
+    .click('#go-button')
+    .wait('#movie-not-found')
+    .wait(250)
+    .evaluate(() => document.querySelector('#movie-not-found').innerHTML)
+    .end()
+    .then((text) => {
+      expect(text).to.contain('No movies found.');
+     })
+    ).timeout(30000);
   
   });
 
@@ -110,11 +124,22 @@ describe('End to End front-end test scenarious', () => {
       expect(text).to.contain('Batman v Superman: Dawn of Justice');
       expect(text).to.contain('2016');
       expect(text).to.contain('151 min');
-      expect(text).to.contain('Action, Adventure, Fantasy, Sci-Fi');
+      expect(text).to.contain('Action, Adventure, Sci-Fi');
       expect(text).to.contain('Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the world wrestles with what kind of a hero it really needs.');
       expect(text).to.contain('14 wins');
       expect(text).to.contain('44');
       expect(text).to.contain('6.5');
+    })
+    ).timeout(30000);
+
+    it('movie with IMDB id "ttxxttxxtt" should not be found', () => 
+    pageObject
+    .goto(url+'/#/movie/ttxxttxxtt')
+    .wait('#movie-detail-not-found')
+    .evaluate(() => document.querySelector('#movie-detail-not-found').innerHTML)
+    .end()
+    .then((text) => {
+      expect(text).to.contain('No movie detail found.');
     })
     ).timeout(30000);
 

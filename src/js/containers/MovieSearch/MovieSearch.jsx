@@ -47,7 +47,7 @@ export default class MovieSearch extends React.Component {
       display = <div></div>
     }
     else if (notFound){
-      display = <div>No movies found.</div>
+      display = <div id="movie-not-found">No movies found.</div>
     }
     else {
       display =
