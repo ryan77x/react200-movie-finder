@@ -53,78 +53,77 @@ export default class MovieSearch extends React.Component {
     let movieList = <div></div>
     let pageList = <div></div>
 
-    if (notFound === null){
-      movieList = <div></div>
-    }
-    else if (notFound){
-      movieList = <div id="movie-not-found">No movies found.</div>
-    }
-    else {
-      movieList =
-        movieData.Search.map(movie => {
-          let temp = null;
-          let src = '/#/movie/' + movie.imdbID;
+    if (notFound !== null){
+      if (notFound){
+        movieList = <div id="movie-not-found">No movies found.</div>
+      }
+      else {
+        movieList =
+          movieData.Search.map(movie => {
+            let temp = null;
+            let src = '/#/movie/' + movie.imdbID;
 
-          if (movie.Poster === 'N/A'){ temp = <div>Movie poster is not available</div>; } 
-          else if (!movie.Poster.includes('https')){ temp = <img src={movie.Poster.replace('http', 'https')} alt={movie.Title}/>; }
-          else{ temp = <img src={movie.Poster} alt={movie.Title}/>; }
+            if (movie.Poster === 'N/A'){ temp = <div>Movie poster is not available</div>; } 
+            else if (!movie.Poster.includes('https')){ temp = <img src={movie.Poster.replace('http', 'https')} alt={movie.Title}/>; }
+            else{ temp = <img src={movie.Poster} alt={movie.Title}/>; }
 
-          return  <div>
-                    <div className="card" key={ movie.id }>
-                      <div className="card-body">
-                        <div className='row'>
-                          <div className='col-md-4 mb-4'>
-                            { temp }
-                          </div>
-                          <div className='col-md-8 mb-4'>
-                            <div className='row'>
-                              <div id="movie-search-body" className='col-md-12 mb-4'>
-                                <div><strong>{movie.Title}</strong></div>
-                                <div>{movie.Year}</div>
-                                <hr/>
-                                <div>{movie.Plot}</div>
-                              </div>
+            return  <div>
+                      <div className="card" key={ movie.id }>
+                        <div className="card-body">
+                          <div className='row'>
+                            <div className='col-md-4 mb-4'>
+                              { temp }
                             </div>
-                            <div className='row'>
-                              <div className='col-md-12 mb-4'>
-                                <a href={src} className="btn more-info-btn-color float-right" role="button" id="more-info-button">More Information</a>
+                            <div className='col-md-8 mb-4'>
+                              <div className='row'>
+                                <div id="movie-search-body" className='col-md-12 mb-4'>
+                                  <div><strong>{movie.Title}</strong></div>
+                                  <div>{movie.Year}</div>
+                                  <hr/>
+                                  <div>{movie.Plot}</div>
+                                </div>
+                              </div>
+                              <div className='row'>
+                                <div className='col-md-12 mb-4'>
+                                  <a href={src} className="btn more-info-btn-color float-right" role="button" id="more-info-button">More Information</a>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>  
-                    <br/>
-                  </div> 
-        });
+                      </div>  
+                      <br/>
+                    </div> 
+          });
 
-      let totalResults = Number(movieData.totalResults);
-      let totalPage = 1;
+        let totalResults = Number(movieData.totalResults);
+        let totalPage = 1;
 
-      if (totalResults > 10){
-        totalPage = Math.trunc(totalResults/10);
-        if (totalResults % 10 != 0)
-          totalPage++; 
-      }
-
-      if (totalPage != 1){
-        let pageArray = [];
-
-        for (let i=1; i<=totalPage; i++){
-          pageArray.push(i);
+        if (totalResults > 10){
+          totalPage = Math.trunc(totalResults/10);
+          if (totalResults % 10 != 0)
+            totalPage++; 
         }
 
-        pageList = pageArray.map(pageNumber => {
-          return <span>
-                  <button 
-                    type="button" 
-                    onClick={ () => this.handlePageNumberClick(pageNumber) }>{ pageNumber }
-                  </button>
-                </span>
-        });
+        if (totalPage != 1){
+          let pageArray = [];
+
+          for (let i=1; i<=totalPage; i++){
+            pageArray.push(i);
+          }
+
+          pageList = pageArray.map(pageNumber => {
+            return <span>
+                    <button 
+                      type="button" 
+                      onClick={ () => this.handlePageNumberClick(pageNumber) }>{ pageNumber }
+                    </button>
+                  </span>
+          });
+        }
       }
-    }            
-    
+    } 
+               
     return (
       <div className='container'>
         <div>

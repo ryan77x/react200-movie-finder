@@ -22,10 +22,7 @@ app.get('/api/movies_data', (req, res) => {
     let pageNumber = req.query.page;
     let pageStr = '';
 
-    if (pageNumber === undefined || pageNumber.trim() === ''){
-        pageStr = '';
-    }
-    else{
+    if (pageNumber !== undefined && pageNumber.trim() !== ''){
         pageStr = '&page='+pageNumber;
     }
 
@@ -34,7 +31,7 @@ app.get('/api/movies_data', (req, res) => {
         console.log("Input is empty space");
     }else{
         let url = sourceUrl + '/?s=' + encodeURIComponent(userInput.trim()) + pageStr + '&apikey=' + MOVIE_API_KEY;
-        console.log(url);
+
         axios
         .get(url)
         .then((response) => {
