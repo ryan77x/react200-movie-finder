@@ -18,16 +18,16 @@ export function search(input) {
 
         if (data.Response === 'False'){
           notFound = true;
-          return {data: {}, input, notFound};
+          return {data: {}, notFound};
         }
         else{
           notFound = false;
-          return {data: data, input, notFound};
+          return {data: data, notFound};
         }
       }).catch(error => {
         console.log(error);  
         notFound = true;
-        return {data: {}, input, notFound};
+        return {data: {}, notFound};
       })
   };
 }

@@ -47,7 +47,7 @@ app.get('/api/movies_data', (req, res) => {
                     res.status(200).json({Search: newData, totalResults: response.data.totalResults, Response: response.data.Response});        
                 }).catch(error => {
                     console.log(error);
-                    res.status(404).json({"Status": "Unable to query the request all of the data at this time.  Try again later." });
+                    res.status(404).json({"Status": "Unable to query all of the request data at this time.  Try again later." });
                 });
             }
         })

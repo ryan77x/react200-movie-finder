@@ -12,6 +12,7 @@ export default class MovieSearch extends React.Component {
     this.handleSearchInput = this.handleSearchInput.bind(this);
     this.handleGoButton = this.handleGoButton.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handlePageNumberClick = this.handlePageNumberClick.bind(this);
   }
 
   handleSearchInput(event) {
@@ -38,10 +39,19 @@ export default class MovieSearch extends React.Component {
     }
   }
 
+  handlePageNumberClick(pageNumber) {
+    const { userInput, dispatch } = this.props;
+
+    if (userInput.trim() !== ''){
+      dispatch(search(userInput + '&page=' + String(pageNumber)));
+    }
+  }
+
   render() {
     const { userInput, movieData, notFound } = this.props;
 
     let display = null;
+    let pages = null;
 
     if (notFound === null){
       display = <div></div>
@@ -87,6 +97,31 @@ export default class MovieSearch extends React.Component {
                     <br/>
                   </div> 
         });
+
+      let totalResults = Number(movieData.totalResults);
+      let totalPage = 1;
+
+      if (totalResults > 10){
+        totalPage = Math.trunc(totalResults/10);
+        if (totalResults % 10 != 0)
+          totalPage++; 
+      }
+
+      let pageArray = [];
+
+      for (let i=1; i<=totalPage; i++){
+        pageArray.push(i);
+      }
+
+      pages = pageArray.map(pageNumber => {
+        return <span>
+                <button 
+                  type="button" 
+                  onClick={ () => this.handlePageNumberClick(pageNumber) }>{ pageNumber }
+                </button>
+              </span>
+      });
+
     }            
     
     return (
@@ -120,6 +155,12 @@ export default class MovieSearch extends React.Component {
         <div className='row'>
           <div className='col-md-12 mb-4'>
             {display}
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-md-12 mb-4'>
+            {pages}
           </div>
         </div>
       </div>
