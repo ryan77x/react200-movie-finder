@@ -50,17 +50,17 @@ export default class MovieSearch extends React.Component {
   render() {
     const { userInput, movieData, notFound } = this.props;
 
-    let display = null;
-    let pages = null;
+    let movieList = <div></div>
+    let pageList = <div></div>
 
     if (notFound === null){
-      display = <div></div>
+      movieList = <div></div>
     }
     else if (notFound){
-      display = <div id="movie-not-found">No movies found.</div>
+      movieList = <div id="movie-not-found">No movies found.</div>
     }
     else {
-      display =
+      movieList =
         movieData.Search.map(movie => {
           let temp = null;
           let src = '/#/movie/' + movie.imdbID;
@@ -107,21 +107,22 @@ export default class MovieSearch extends React.Component {
           totalPage++; 
       }
 
-      let pageArray = [];
+      if (totalPage != 1){
+        let pageArray = [];
 
-      for (let i=1; i<=totalPage; i++){
-        pageArray.push(i);
+        for (let i=1; i<=totalPage; i++){
+          pageArray.push(i);
+        }
+
+        pageList = pageArray.map(pageNumber => {
+          return <span>
+                  <button 
+                    type="button" 
+                    onClick={ () => this.handlePageNumberClick(pageNumber) }>{ pageNumber }
+                  </button>
+                </span>
+        });
       }
-
-      pages = pageArray.map(pageNumber => {
-        return <span>
-                <button 
-                  type="button" 
-                  onClick={ () => this.handlePageNumberClick(pageNumber) }>{ pageNumber }
-                </button>
-              </span>
-      });
-
     }            
     
     return (
@@ -154,13 +155,13 @@ export default class MovieSearch extends React.Component {
 
         <div className='row'>
           <div className='col-md-12 mb-4'>
-            {display}
+            {movieList}
           </div>
         </div>
 
         <div className='row'>
           <div className='col-md-12 mb-4'>
-            {pages}
+            {pageList}
           </div>
         </div>
       </div>

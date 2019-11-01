@@ -10,7 +10,7 @@ export function updateSearchInput(input) {
 export function search(input) {
   let url = '/api/movies_data/?s=' + input;
   let notFound = null;
-  
+
   return {
     type: 'GET_MOVIE',
     payload: axios.get(url).then(res=>{

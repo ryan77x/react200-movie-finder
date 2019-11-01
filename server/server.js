@@ -19,13 +19,22 @@ app.use(express.static('public'));
 
 app.get('/api/movies_data', (req, res) => {
     let userInput = req.query.s;
+    let pageNumber = req.query.page;
+    let pageStr = '';
+
+    if (pageNumber === undefined || pageNumber.trim() === ''){
+        pageStr = '';
+    }
+    else{
+        pageStr = '&page='+pageNumber;
+    }
 
     if (userInput === undefined || userInput.trim() === ''){
         res.status(404).json({"Status": "Input is invalid." });
         console.log("Input is empty space");
     }else{
-        let url = sourceUrl + '/?s=' + encodeURIComponent(userInput.trim()) + '&apikey=' + MOVIE_API_KEY;
-
+        let url = sourceUrl + '/?s=' + encodeURIComponent(userInput.trim()) + pageStr + '&apikey=' + MOVIE_API_KEY;
+        console.log(url);
         axios
         .get(url)
         .then((response) => {
